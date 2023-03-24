@@ -21,3 +21,38 @@ const getMovie = async (req, res) => {
     
       res.status(200).json(movie);
 }
+
+//create a new movie listing
+const createMovie  = async (req, res, next) => {
+    const { title } = req.body;
+    try {
+      const movie = await Movie.create({ title });
+      res.status(200).json(movie);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
+  //delete a movie
+  const deleteMovie = async (req, res) => {
+    const { id } = req.params;
+  
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: "Not found!" });
+    }
+  
+    const movie = await Movie.findOneAndDelete({ _id: id });
+  
+    if (!movie) {
+      return res.status(404).json({ error: "Not found!" });
+    }
+  
+    res.status(200).json({ movie });
+  };
+
+  module.exports = {
+    getMovies,
+    getMovie,
+    createMovie,
+    deleteMovie
+  };
