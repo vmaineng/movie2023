@@ -1,1 +1,0 @@
-const potato = "funtime";
