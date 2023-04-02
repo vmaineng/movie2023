@@ -1,10 +1,22 @@
 const Movie = require("../models/Movie");
 
+const { TMDB_BASE_URL, apiKey } = process.env;
+
 //get all movies
-const getMovies = async (req, res, next) => {
-    const movies = await Movie.find({})
-    res.status(200).json(movies)
+const getAllMovies = async (req, res) => {
+  try {
+      const req = await res.get(
+          `${TMDB_BASE_URL}trending/${req.params.type}/day?api_key=${apiKey}`
+      );
+      res.status(200).json(request.data);
+  } catch (error) {
+      res.status(500).json(error);
+  }
 }
+// const getMovies = async (req, res, next) => {
+//     const movies = await Movie.find({})
+//     res.status(200).json(movies)
+// }
 
 //get a single movie
 const getMovie = async (req, res) => {
@@ -51,7 +63,7 @@ const createMovie  = async (req, res, next) => {
   };
 
   module.exports = {
-    getMovies,
+    getAllMovies,
     getMovie,
     createMovie,
     deleteMovie

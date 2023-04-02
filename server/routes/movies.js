@@ -1,13 +1,15 @@
 const express = require('express')
 
-const { TMDB_BASE_URL, apiKey } = process.env;
-
 const router = express.Router()
 
+const { getAllMovies } = require('../controllers/movieController');
+
 //get all movies
-router.get('/', (req, res) => {
-    res.json({msg: "get all movies"})
-})
+// router.get('/', (req, res) => {
+//     res.json({msg: "get all movies"})
+// })
+
+router.get("/trending/:type", getAllMovies)
 
 //get a single movie
 router.get('/:id', (req, res) => {
@@ -30,4 +32,6 @@ router.patch('/:id', (req, res) => {
     res.json({msg: "POST a new movie"})
 })
 
-module.exports = router
+module.exports = {
+    getAllMovies
+}
