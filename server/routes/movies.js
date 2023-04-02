@@ -1,5 +1,7 @@
 const express = require('express')
 
+const { TMDB_BASE_URL, apiKey } = process.env;
+
 const router = express.Router()
 
 //get all movies
