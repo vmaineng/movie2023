@@ -1,12 +1,27 @@
 import React from 'react'
-
+import { useEffect, useState } from "react";
 
 function Home() {
+  const [movies, setMovies] = useState([]);
+
+useEffect(() => {
+  const fetchAllMovies = async () => {
+    const response = await fetch("getAllMovies");
+    const json = await response.json();
+    if (response.ok) {
+      setMovies(json)
+;    }
+  };
+
+  fetchAllMovies(); 
+}, [])
+
   return (
     <div>
-       fetch(https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey})
-       .then(r => r.json())
-       .then()
+     { movies.map((movie) => (
+      {movie.id}, 
+      {movie.name}
+     ))}
       
     </div>
   )
