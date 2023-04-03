@@ -1,4 +1,5 @@
-const Movie = require("../models/Movie");
+// const Movie = require("../models/Movie");
+
 
 const { TMDB_BASE_URL, apiKey } = process.env;
 

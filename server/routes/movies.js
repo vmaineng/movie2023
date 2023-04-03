@@ -1,5 +1,4 @@
 const express = require('express')
-
 const router = express.Router()
 
 const { getAllMovies } = require('../controllers/movieController');
@@ -32,6 +31,4 @@ router.patch('/:id', (req, res) => {
     res.json({msg: "POST a new movie"})
 })
 
-module.exports = {
-    getAllMovies
-}
+module.exports = router;
