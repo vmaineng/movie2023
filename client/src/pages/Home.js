@@ -6,7 +6,7 @@ function Home() {
 
 useEffect(() => {
   const fetchAllMovies = async () => {
-    const response = await fetch("getAllMovies");
+    const response = await fetch("http://localhost/4002/getAllMovies");
     const json = await response.json();
     if (response.ok) {
       setMovies(json)
@@ -17,10 +17,12 @@ useEffect(() => {
 }, [])
 
   return (
-    <div>
+    <div className = "container">
+     
      { movies.map((movie) => (
-      {movie.id}, 
-      {movie.name}
+     <div key = {movie.id}> 
+     <h3>{movie.name} </h3> 
+     </div>
      ))}
       
     </div>
